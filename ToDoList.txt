@@ -1,0 +1,11 @@
+Issues
+
+1. Does not work when I select a type of questions (multiple or true/false)
+
+ToDo
+1. Make Opacity component nicer (actually turn this into a component so I can call for both multiplechoice and truefalse components)
+2. Make ResultScreen nicer.
+
+[TODO-001] - add error screen
+
+https://www.datarmatics.com/reactjs/11_create-a-quiz-app-in-react-js-with-source-codes-step-by-step/
