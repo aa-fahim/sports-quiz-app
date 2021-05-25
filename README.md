@@ -7,5 +7,5 @@ The app consists of 3 screens.
 1. Intro (choose what and how many questions you would like)
 
 <br>
-
+![alt text](https://github.com/aa-fahim/SportsQuizApp/blob/master/assets/screenshots/intro-screen.png)
 <br>
