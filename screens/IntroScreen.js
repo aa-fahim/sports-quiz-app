@@ -1,7 +1,15 @@
 import React from "react";
-import { Text, StyleSheet, View, Button } from "react-native";
+import { Text, StyleSheet, View, ImageBackground } from "react-native";
+import CustomButton from "../components/CustomButton";
 import DropDownPicker from "react-native-dropdown-picker";
 import Context from "../contexts/context";
+import { headersStyle, buttonStyle, colors } from "../styles/styles";
+
+const { primaryHeader } = headersStyle;
+const { primaryButton } = buttonStyle;
+const { backgroundColor } = colors;
+
+const backgroundImage = require("../assets/background.jpg");
 
 export default class IntroScreen extends React.Component {
   state = {
@@ -30,7 +38,10 @@ export default class IntroScreen extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <ImageBackground source={backgroundImage} style={[styles.container]}>
+        <Text style={[primaryHeader, styles.headerStyling]}>
+          Welcome to QuizApp!
+        </Text>
         <Text style={styles.text}>Number of Questions</Text>
         <DropDownPicker
           items={[
@@ -85,9 +96,9 @@ export default class IntroScreen extends React.Component {
             { label: "49", value: "49" },
             { label: "50", value: "50" },
           ]}
-          containerStyle={{ width: 200, height: 40, margin: 15 }}
-          style={{ backgroundColor: "#39644f" }}
-          dropDownStyle={{ backgroundColor: "#39644f" }}
+          containerStyle={{ width: "70%", height: 40, margin: 15 }}
+          style={{ backgroundColor: "#D8C98F" }}
+          dropDownStyle={{ backgroundColor: "#D8C98F" }}
           onChangeItem={(item) => this.setNumOfQuestions(item.value)}
           searchable={true}
           searchablePlaceholder="How many?"
@@ -96,7 +107,7 @@ export default class IntroScreen extends React.Component {
           searchableError={() => <Text>Pick between 1-50</Text>}
           zIndex={5000}
         />
-        <Text style={styles.text}>Select Difficulty:</Text>
+        <Text style={styles.text}>Select Difficulty</Text>
         <DropDownPicker
           items={[
             { label: "Easy", value: "easy" },
@@ -105,9 +116,9 @@ export default class IntroScreen extends React.Component {
           ]}
           defaultIndex={0}
           placeholder="Any"
-          containerStyle={{ width: 200, height: 40, margin: 15 }}
-          style={{ backgroundColor: "#39644f", color: "white" }}
-          dropDownStyle={{ backgroundColor: "#39644f", color: "white" }}
+          containerStyle={{ width: "70%", height: 40, margin: 15 }}
+          style={{ backgroundColor: "#D8C98F", color: "white" }}
+          dropDownStyle={{ backgroundColor: "#D8C98F", color: "white" }}
           onChangeItem={(item) => this.setDifficulty(item.value)}
           zIndex={4000}
         />
@@ -119,31 +130,51 @@ export default class IntroScreen extends React.Component {
           ]}
           defaultIndex={0}
           placeholder="Any"
-          containerStyle={{ width: 200, height: 40, margin: 15 }}
-          style={{ backgroundColor: "#39644f" }}
-          dropDownStyle={{ backgroundColor: "#39644f" }}
+          containerStyle={{ width: "70%", height: 40, margin: 15 }}
+          style={{ backgroundColor: "#D8C98F" }}
+          dropDownStyle={{ backgroundColor: "#D8C98F" }}
           onChangeItem={(item) => this.setTypeOfQuestions(item.value)}
           zIndex={3000}
         />
-        <Button
+        <CustomButton
+          style={[primaryButton, styles.buttonStyling]}
+          textStyle={styles.buttonText}
           title="Quiz me!"
           onPress={() =>
             this.props.navigation.navigate("QuestionScreen", this.state)
           }
         />
-      </View>
+      </ImageBackground>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  backgroundImage: {
+    flex: 1,
+    resizeMode: "cover", // or 'stretch'
+  },
   container: {
     flex: 1,
-    backgroundColor: "#4d4d4d",
     alignItems: "center",
     justifyContent: "center",
   },
   text: {
     color: "white",
+    fontFamily: "Jua",
+    fontSize: 24,
+  },
+  headerStyling: {
+    marginBottom: 50,
+    marginHorizontal: "10%",
+    textAlign: "center",
+  },
+  buttonStyling: {
+    marginTop: 20,
+  },
+  buttonText: {
+    fontSize: 20,
+    color: "white",
+    fontFamily: "Jua",
   },
 });

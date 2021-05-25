@@ -20,8 +20,15 @@ export default class GlobalState extends React.Component {
 
   goToNextQuestion = () => {
     const { currentQuestionIndex } = this.state;
-    this.setState({ currentQuestionIndex: currentQuestionIndex + 1 }, () => {
-      const { currentQuestionIndex, questionsLength } = this.state;
+    this.setState({ currentQuestionIndex: currentQuestionIndex + 1 });
+  };
+
+  resetContextState = () => {
+    this.setState({
+      questions: [],
+      currentQuestionIndex: 0,
+      questionsLength: 0,
+      currentScore: 0,
     });
   };
 
@@ -34,6 +41,7 @@ export default class GlobalState extends React.Component {
       addOnePoint: this.addOnePoint,
       goToNextQuestion: this.goToNextQuestion,
       setQuestions: this.setQuestions,
+      resetContextState: this.resetContextState,
     };
 
     return (

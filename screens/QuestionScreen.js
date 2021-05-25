@@ -1,7 +1,18 @@
 import React from "react";
-import { ScrollView, StyleSheet, Button, View } from "react-native";
-import QuestionBlock from "../components/QuestionBlock";
+import {
+  ScrollView,
+  StyleSheet,
+  Button,
+  View,
+  ImageBackground,
+} from "react-native";
+import QuestionContainer from "../components/QuestionContainer";
 import Context from "../contexts/context";
+import { colors } from "../styles/styles";
+
+const { backgroundColor } = colors;
+
+const backgroundImage = require("../assets/background.jpg");
 
 export default class QuestionScreen extends React.Component {
   state = {
@@ -19,6 +30,7 @@ export default class QuestionScreen extends React.Component {
       (urlDetails.difficulty ? "&difficulty=" + urlDetails.difficulty : "") +
       (urlDetails.typeOfQuestions ? "&type=" + urlDetails.typeOfQuestions : "");
 
+    // let url = "https://opentdb.com/api.php?amount=10&category=21"; // for debugging purposes only
     await fetch(url).then((response) =>
       response
         .json()
@@ -39,14 +51,14 @@ export default class QuestionScreen extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <ImageBackground source={backgroundImage} style={[styles.container]}>
         {this.state.isQuestionsLoaded ? (
-          <QuestionBlock
+          <QuestionContainer
             currentQuestionIndex={this.context.currentQuestionIndex}
             handleResultScreenRedirect={this.handleResultScreenRedirect}
           />
         ) : null}
-      </View>
+      </ImageBackground>
     );
   }
 }
@@ -54,7 +66,7 @@ export default class QuestionScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#4d4d4d",
+    display: "flex",
     alignItems: "center",
     justifyContent: "center",
   },
